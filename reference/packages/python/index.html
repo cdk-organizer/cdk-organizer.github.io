@@ -154,6 +154,11 @@
 <nav aria-label="Installation" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#extras">
+    Extras
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#cdk-start-script">
     CDK Start Script
   </a>
@@ -174,6 +179,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#context-variables">
+    Context Variables
+  </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#project-structure">
@@ -284,6 +294,11 @@
 <nav aria-label="Installation" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#extras">
+    Extras
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#cdk-start-script">
     CDK Start Script
   </a>
@@ -304,6 +319,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#context-variables">
+    Context Variables
+  </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#project-structure">
@@ -392,8 +412,13 @@
 </ul>
 <p>Full documentation: <a href="https://cdk-organizer.github.io/">https://cdk-organizer.github.io/</a></p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>pip install cdk-organizer
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>pip install cdk-organizer<span class="o">[</span>terraform,aws<span class="o">]</span>
 </code></pre></div>
+<h3 id="extras">Extras<a class="headerlink" href="#extras" title="Permanent link"></a></h3>
+<ul>
+<li><code>terraform</code>: Include <code>cdktf</code> as a dependency.</li>
+<li><code>aws</code>: Include <code>aws-cdk-lib</code> as a dependency.</li>
+</ul>
 <h3 id="cdk-start-script">CDK Start Script<a class="headerlink" href="#cdk-start-script" title="Permanent link"></a></h3>
 <p>The content of the <code>app.py</code> file should be as follows:</p>
 <h4 id="aws-cdk">AWS CDK<a class="headerlink" href="#aws-cdk" title="Permanent link"></a></h4>
@@ -420,45 +445,70 @@
 <a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">loader</span><span class="o">.</span><span class="n">synth</span><span class="p">()</span>
 <a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="n">app</span><span class="o">.</span><span class="n">synth</span><span class="p">()</span>
 </code></pre></div>
+<h2 id="context-variables">Context Variables<a class="headerlink" href="#context-variables" title="Permanent link"></a></h2>
+<p>The following context variables are required to the CDK Organizer to work properly:</p>
+<ul>
+<li><code>env</code></li>
+<li><code>region</code></li>
+</ul>
+<p>The variables can be set in the <code>cdk.json</code> file:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev"</span><span class="p">,</span><span class="w"></span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-east-1"</span><span class="w"></span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">  </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Or passed as arguments to the CDK CLI:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>cdk synth --context <span class="nv">env</span><span class="o">=</span>dev --context <span class="nv">region</span><span class="o">=</span>us-east-1
+</code></pre></div>
+<blockquote>
+<p>In the <code>cdktf</code> CLI the context variables cannot be passed as arguments, so they need to be set in the <code>cdk.json</code> file. <a href="https://github.com/hashicorp/terraform-cdk/issues/2019">https://github.com/hashicorp/terraform-cdk/issues/2019</a>
+The <code>env</code> variable can also be set as an environment variable <code>CDK_ENV</code>.</p>
+</blockquote>
 <h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link"></a></h2>
 <p>To apply the pattern purposed in this library for CDK projects, the following structure is required:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>.
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>+-- cdk.json
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>+-- app.py
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>.
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>+-- cdk.json
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>+-- app.py
 </code></pre></div>
 <h3 id="stack-structure">Stack Structure<a class="headerlink" href="#stack-structure" title="Permanent link"></a></h3>
 <p>the stack class needs to inherit from class <code>cdk_organizer.aws.stack.Stack</code> for AWS CDK and <code>cdk_organizer.terraform.stack.Stack</code> for Terraform CDK.</p>
 <h4 id="aws-cdk_1">AWS CDK<a class="headerlink" href="#aws-cdk_1" title="Permanent link"></a></h4>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">constructs</span> <span class="kn">import</span> <span class="n">Construct</span>
-<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack</span> <span class="kn">import</span> <span class="n">Stack</span>
-<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
-<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>
-<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>
-<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="k">class</span> <span class="nc">MyStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
-<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>        <span class="bp">self</span><span class="p">,</span>
-<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>        <span class="n">scope</span><span class="p">:</span> <span class="n">Construct</span><span class="p">,</span>
-<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>        <span class="n">stack_group</span><span class="p">:</span> <span class="n">StackGroup</span><span class="p">,</span>
-<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>        <span class="o">**</span><span class="n">kwargs</span>
-<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">stack_group</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">constructs</span> <span class="kn">import</span> <span class="n">Construct</span>
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack</span> <span class="kn">import</span> <span class="n">Stack</span>
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="k">class</span> <span class="nc">MyStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
+<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a>        <span class="bp">self</span><span class="p">,</span>
+<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a>        <span class="n">scope</span><span class="p">:</span> <span class="n">Construct</span><span class="p">,</span>
+<a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a>        <span class="n">stack_group</span><span class="p">:</span> <span class="n">StackGroup</span><span class="p">,</span>
+<a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a>        <span class="o">**</span><span class="n">kwargs</span>
+<a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a href="#__codelineno-6-14" id="__codelineno-6-14" name="__codelineno-6-14"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">stack_group</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
 <h4 id="terraform-cdk">Terraform CDK<a class="headerlink" href="#terraform-cdk" title="Permanent link"></a></h4>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">constructs</span> <span class="kn">import</span> <span class="n">Construct</span>
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">cdk_organizer.terraform.stack</span> <span class="kn">import</span> <span class="n">Stack</span>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.terraform.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="k">class</span> <span class="nc">MyStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
-<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a>        <span class="bp">self</span><span class="p">,</span>
-<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a>        <span class="n">scope</span><span class="p">:</span> <span class="n">Construct</span><span class="p">,</span>
-<a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a>        <span class="n">stack_group</span><span class="p">:</span> <span class="n">StackGroup</span><span class="p">,</span>
-<a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a>        <span class="o">**</span><span class="n">kwargs</span>
-<a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">stack_group</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">from</span> <span class="nn">constructs</span> <span class="kn">import</span> <span class="n">Construct</span>
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kn">from</span> <span class="nn">cdk_organizer.terraform.stack</span> <span class="kn">import</span> <span class="n">Stack</span>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.terraform.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>
+<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="k">class</span> <span class="nc">MyStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
+<a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<a href="#__codelineno-7-8" id="__codelineno-7-8" name="__codelineno-7-8"></a>        <span class="bp">self</span><span class="p">,</span>
+<a href="#__codelineno-7-9" id="__codelineno-7-9" name="__codelineno-7-9"></a>        <span class="n">scope</span><span class="p">:</span> <span class="n">Construct</span><span class="p">,</span>
+<a href="#__codelineno-7-10" id="__codelineno-7-10" name="__codelineno-7-10"></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a href="#__codelineno-7-11" id="__codelineno-7-11" name="__codelineno-7-11"></a>        <span class="n">stack_group</span><span class="p">:</span> <span class="n">StackGroup</span><span class="p">,</span>
+<a href="#__codelineno-7-12" id="__codelineno-7-12" name="__codelineno-7-12"></a>        <span class="o">**</span><span class="n">kwargs</span>
+<a href="#__codelineno-7-13" id="__codelineno-7-13" name="__codelineno-7-13"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a href="#__codelineno-7-14" id="__codelineno-7-14" name="__codelineno-7-14"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">stack_group</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
 <h4 id="using-s3-backend">Using S3 Backend<a class="headerlink" href="#using-s3-backend" title="Permanent link"></a></h4>
 <p>To use S3 terraform backend, the following resources are required:</p>
@@ -467,102 +517,102 @@
 <li>DynamoDB Table</li>
 </ul>
 <p>Modify the <code>cdktf.json</code> to add the following object:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="err">...</span><span class="w"></span>
-<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">  </span><span class="nt">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="err">...</span><span class="w"></span>
-<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="nt">"s3Backend"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">      </span><span class="nt">"bucket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;bucket-name&gt;"</span><span class="p">,</span><span class="w"></span>
-<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">      </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;aws-region&gt;"</span><span class="p">,</span><span class="w"></span>
-<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">      </span><span class="nt">"dynamodb_table"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;dynamodb-table-name&gt;"</span><span class="w"></span>
-<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="err">...</span><span class="w"></span>
-<a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">  </span><span class="err">...</span><span class="w"></span>
-<a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="nt">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="nt">"s3Backend"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">      </span><span class="nt">"bucket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;bucket-name&gt;"</span><span class="p">,</span><span class="w"></span>
+<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">      </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;aws-region&gt;"</span><span class="p">,</span><span class="w"></span>
+<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">      </span><span class="nt">"dynamodb_table"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;dynamodb-table-name&gt;"</span><span class="w"></span>
+<a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-8-10" id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-8-11" id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-8-12" id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">  </span><span class="err">...</span><span class="w"></span>
+<a href="#__codelineno-8-13" id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="stack-group-structure">Stack Group Structure<a class="headerlink" href="#stack-group-structure" title="Permanent link"></a></h3>
 <p>Create a <code>stacks</code> folder in the root of the project and structure it as follows:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>.
-<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>+-- cdk.json
-<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a>+-- app.py
-<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>+-- stacks/
-<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>| +-- &lt;groupName&gt;/
-<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a>|   +-- stacks.py
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>.
+<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a>+-- cdk.json
+<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a>+-- app.py
+<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a>+-- stacks/
+<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a>| +-- &lt;groupName&gt;/
+<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a>|   +-- stacks.py
 </code></pre></div>
 <p>The stack groups files follow this pattern:</p>
 <h4 id="aws-cdk_2">AWS CDK<a class="headerlink" href="#aws-cdk_2" title="Permanent link"></a></h4>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">import</span> <span class="nn">aws_cdk</span> <span class="k">as</span> <span class="nn">cdk</span>
-<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
-<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a>
-<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="nd">@dataclass</span>
-<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="k">class</span> <span class="nc">MyStackGroupConfig</span><span class="p">:</span>
-<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a>    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span>
-<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a>    <span class="n">ipv6</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a>
-<a href="#__codelineno-8-10" id="__codelineno-8-10" name="__codelineno-8-10"></a>
-<a href="#__codelineno-8-11" id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="k">class</span> <span class="nc">MyStackGroup</span><span class="p">(</span><span class="n">StackGroup</span><span class="p">[</span><span class="n">MyStackGroupConfig</span><span class="p">]):</span>
-<a href="#__codelineno-8-12" id="__codelineno-8-12" name="__codelineno-8-12"></a>    <span class="k">def</span> <span class="nf">_load_stacks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a href="#__codelineno-8-13" id="__codelineno-8-13" name="__codelineno-8-13"></a>        <span class="n">MyStack</span><span class="p">(</span>
-<a href="#__codelineno-8-14" id="__codelineno-8-14" name="__codelineno-8-14"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span>
-<a href="#__codelineno-8-15" id="__codelineno-8-15" name="__codelineno-8-15"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">get_stack_name</span><span class="p">(</span><span class="s1">'my-stack'</span><span class="p">),</span>
-<a href="#__codelineno-8-16" id="__codelineno-8-16" name="__codelineno-8-16"></a>            <span class="n">stack_group</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
-<a href="#__codelineno-8-17" id="__codelineno-8-17" name="__codelineno-8-17"></a>            <span class="n">parameters</span><span class="o">=</span><span class="n">MyStackParameters</span><span class="p">(</span>
-<a href="#__codelineno-8-18" id="__codelineno-8-18" name="__codelineno-8-18"></a>                <span class="n">domain</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
-<a href="#__codelineno-8-19" id="__codelineno-8-19" name="__codelineno-8-19"></a>                <span class="n">ipv6</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ipv6</span>
-<a href="#__codelineno-8-20" id="__codelineno-8-20" name="__codelineno-8-20"></a>            <span class="p">)</span>
-<a href="#__codelineno-8-21" id="__codelineno-8-21" name="__codelineno-8-21"></a>        <span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kn">import</span> <span class="nn">aws_cdk</span> <span class="k">as</span> <span class="nn">cdk</span>
+<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
+<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a>
+<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="nd">@dataclass</span>
+<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="k">class</span> <span class="nc">MyStackGroupConfig</span><span class="p">:</span>
+<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a>    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span>
+<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a>    <span class="n">ipv6</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a>
+<a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a>
+<a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="k">class</span> <span class="nc">MyStackGroup</span><span class="p">(</span><span class="n">StackGroup</span><span class="p">[</span><span class="n">MyStackGroupConfig</span><span class="p">]):</span>
+<a href="#__codelineno-10-12" id="__codelineno-10-12" name="__codelineno-10-12"></a>    <span class="k">def</span> <span class="nf">_load_stacks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a href="#__codelineno-10-13" id="__codelineno-10-13" name="__codelineno-10-13"></a>        <span class="n">MyStack</span><span class="p">(</span>
+<a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span>
+<a href="#__codelineno-10-15" id="__codelineno-10-15" name="__codelineno-10-15"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">get_stack_name</span><span class="p">(</span><span class="s1">'my-stack'</span><span class="p">),</span>
+<a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a>            <span class="n">stack_group</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<a href="#__codelineno-10-17" id="__codelineno-10-17" name="__codelineno-10-17"></a>            <span class="n">parameters</span><span class="o">=</span><span class="n">MyStackParameters</span><span class="p">(</span>
+<a href="#__codelineno-10-18" id="__codelineno-10-18" name="__codelineno-10-18"></a>                <span class="n">domain</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
+<a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a>                <span class="n">ipv6</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ipv6</span>
+<a href="#__codelineno-10-20" id="__codelineno-10-20" name="__codelineno-10-20"></a>            <span class="p">)</span>
+<a href="#__codelineno-10-21" id="__codelineno-10-21" name="__codelineno-10-21"></a>        <span class="p">)</span>
 </code></pre></div>
 <h4 id="terraform">Terraform<a class="headerlink" href="#terraform" title="Permanent link"></a></h4>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">import</span> <span class="nn">cdktf</span>
-<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.terraform.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
-<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a>
-<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="nd">@dataclass</span>
-<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">class</span> <span class="nc">MyStackGroupConfig</span><span class="p">:</span>
-<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span>
-<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="n">ipv6</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a>
-<a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a>
-<a href="#__codelineno-9-11" id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="k">class</span> <span class="nc">MyStackGroup</span><span class="p">(</span><span class="n">StackGroup</span><span class="p">[</span><span class="n">MyStackGroupConfig</span><span class="p">]):</span>
-<a href="#__codelineno-9-12" id="__codelineno-9-12" name="__codelineno-9-12"></a>    <span class="k">def</span> <span class="nf">_load_stacks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a href="#__codelineno-9-13" id="__codelineno-9-13" name="__codelineno-9-13"></a>        <span class="n">MyStack</span><span class="p">(</span>
-<a href="#__codelineno-9-14" id="__codelineno-9-14" name="__codelineno-9-14"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span>
-<a href="#__codelineno-9-15" id="__codelineno-9-15" name="__codelineno-9-15"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">get_stack_name</span><span class="p">(</span><span class="s1">'my-stack'</span><span class="p">),</span>
-<a href="#__codelineno-9-16" id="__codelineno-9-16" name="__codelineno-9-16"></a>            <span class="n">stack_group</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
-<a href="#__codelineno-9-17" id="__codelineno-9-17" name="__codelineno-9-17"></a>            <span class="n">parameters</span><span class="o">=</span><span class="n">MyStackParameters</span><span class="p">(</span>
-<a href="#__codelineno-9-18" id="__codelineno-9-18" name="__codelineno-9-18"></a>                <span class="n">domain</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
-<a href="#__codelineno-9-19" id="__codelineno-9-19" name="__codelineno-9-19"></a>                <span class="n">ipv6</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ipv6</span>
-<a href="#__codelineno-9-20" id="__codelineno-9-20" name="__codelineno-9-20"></a>            <span class="p">)</span>
-<a href="#__codelineno-9-21" id="__codelineno-9-21" name="__codelineno-9-21"></a>        <span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kn">import</span> <span class="nn">cdktf</span>
+<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.terraform.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
+<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a>
+<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="nd">@dataclass</span>
+<a href="#__codelineno-11-6" id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="k">class</span> <span class="nc">MyStackGroupConfig</span><span class="p">:</span>
+<a href="#__codelineno-11-7" id="__codelineno-11-7" name="__codelineno-11-7"></a>    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span>
+<a href="#__codelineno-11-8" id="__codelineno-11-8" name="__codelineno-11-8"></a>    <span class="n">ipv6</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<a href="#__codelineno-11-9" id="__codelineno-11-9" name="__codelineno-11-9"></a>
+<a href="#__codelineno-11-10" id="__codelineno-11-10" name="__codelineno-11-10"></a>
+<a href="#__codelineno-11-11" id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="k">class</span> <span class="nc">MyStackGroup</span><span class="p">(</span><span class="n">StackGroup</span><span class="p">[</span><span class="n">MyStackGroupConfig</span><span class="p">]):</span>
+<a href="#__codelineno-11-12" id="__codelineno-11-12" name="__codelineno-11-12"></a>    <span class="k">def</span> <span class="nf">_load_stacks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a href="#__codelineno-11-13" id="__codelineno-11-13" name="__codelineno-11-13"></a>        <span class="n">MyStack</span><span class="p">(</span>
+<a href="#__codelineno-11-14" id="__codelineno-11-14" name="__codelineno-11-14"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span>
+<a href="#__codelineno-11-15" id="__codelineno-11-15" name="__codelineno-11-15"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">get_stack_name</span><span class="p">(</span><span class="s1">'my-stack'</span><span class="p">),</span>
+<a href="#__codelineno-11-16" id="__codelineno-11-16" name="__codelineno-11-16"></a>            <span class="n">stack_group</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<a href="#__codelineno-11-17" id="__codelineno-11-17" name="__codelineno-11-17"></a>            <span class="n">parameters</span><span class="o">=</span><span class="n">MyStackParameters</span><span class="p">(</span>
+<a href="#__codelineno-11-18" id="__codelineno-11-18" name="__codelineno-11-18"></a>                <span class="n">domain</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
+<a href="#__codelineno-11-19" id="__codelineno-11-19" name="__codelineno-11-19"></a>                <span class="n">ipv6</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ipv6</span>
+<a href="#__codelineno-11-20" id="__codelineno-11-20" name="__codelineno-11-20"></a>            <span class="p">)</span>
+<a href="#__codelineno-11-21" id="__codelineno-11-21" name="__codelineno-11-21"></a>        <span class="p">)</span>
 </code></pre></div>
 <h4 id="using-stack-attributes-from-other-stack-groups">Using Stack Attributes from Other Stack Groups<a class="headerlink" href="#using-stack-attributes-from-other-stack-groups" title="Permanent link"></a></h4>
 <p>In some cases, you may want to use the attributes of another stack group. For example, refer the DNS Hosted Zone created by a shared stack group.</p>
 <p>To resolve the group use the <code>self.resolve_group</code> function in the stack group class, like the example below:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kn">import</span> <span class="nn">aws_cdk</span> <span class="k">as</span> <span class="nn">cdk</span>
-<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
-<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="kn">from</span> <span class="nn">stacks.dns</span> <span class="kn">import</span> <span class="n">DNSStackGroup</span>
-<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a>
-<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="nd">@dataclass</span>
-<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="k">class</span> <span class="nc">MyStackGroupConfig</span><span class="p">:</span>
-<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a>    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span>
-<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a>    <span class="n">ipv6</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a>
-<a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a>
-<a href="#__codelineno-10-12" id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="k">class</span> <span class="nc">MyStackGroup</span><span class="p">(</span><span class="n">StackGroup</span><span class="p">[</span><span class="n">MyStackGroupConfig</span><span class="p">]):</span>
-<a href="#__codelineno-10-13" id="__codelineno-10-13" name="__codelineno-10-13"></a>    <span class="k">def</span> <span class="nf">_load_stacks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a>        <span class="n">MyStack</span><span class="p">(</span>
-<a href="#__codelineno-10-15" id="__codelineno-10-15" name="__codelineno-10-15"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span>
-<a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">get_stack_name</span><span class="p">(</span><span class="s1">'my-stack'</span><span class="p">),</span>
-<a href="#__codelineno-10-17" id="__codelineno-10-17" name="__codelineno-10-17"></a>            <span class="n">stack_group</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
-<a href="#__codelineno-10-18" id="__codelineno-10-18" name="__codelineno-10-18"></a>            <span class="n">parameters</span><span class="o">=</span><span class="n">MyStackParameters</span><span class="p">(</span>
-<a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a>                <span class="n">domain</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
-<a href="#__codelineno-10-20" id="__codelineno-10-20" name="__codelineno-10-20"></a>                <span class="n">zone</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">resolve_group</span><span class="p">(</span><span class="n">DNSStackGroup</span><span class="p">)</span><span class="o">.</span><span class="n">zone</span>
-<a href="#__codelineno-10-21" id="__codelineno-10-21" name="__codelineno-10-21"></a>                <span class="n">ipv6</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ipv6</span>
-<a href="#__codelineno-10-22" id="__codelineno-10-22" name="__codelineno-10-22"></a>            <span class="p">)</span>
-<a href="#__codelineno-10-23" id="__codelineno-10-23" name="__codelineno-10-23"></a>        <span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kn">import</span> <span class="nn">aws_cdk</span> <span class="k">as</span> <span class="nn">cdk</span>
+<a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kn">from</span> <span class="nn">cdk_organizer.aws.stack_group</span> <span class="kn">import</span> <span class="n">StackGroup</span>
+<a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="kn">from</span> <span class="nn">stacks.dns</span> <span class="kn">import</span> <span class="n">DNSStackGroup</span>
+<a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a>
+<a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="nd">@dataclass</span>
+<a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="k">class</span> <span class="nc">MyStackGroupConfig</span><span class="p">:</span>
+<a href="#__codelineno-12-8" id="__codelineno-12-8" name="__codelineno-12-8"></a>    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span>
+<a href="#__codelineno-12-9" id="__codelineno-12-9" name="__codelineno-12-9"></a>    <span class="n">ipv6</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<a href="#__codelineno-12-10" id="__codelineno-12-10" name="__codelineno-12-10"></a>
+<a href="#__codelineno-12-11" id="__codelineno-12-11" name="__codelineno-12-11"></a>
+<a href="#__codelineno-12-12" id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="k">class</span> <span class="nc">MyStackGroup</span><span class="p">(</span><span class="n">StackGroup</span><span class="p">[</span><span class="n">MyStackGroupConfig</span><span class="p">]):</span>
+<a href="#__codelineno-12-13" id="__codelineno-12-13" name="__codelineno-12-13"></a>    <span class="k">def</span> <span class="nf">_load_stacks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a href="#__codelineno-12-14" id="__codelineno-12-14" name="__codelineno-12-14"></a>        <span class="n">MyStack</span><span class="p">(</span>
+<a href="#__codelineno-12-15" id="__codelineno-12-15" name="__codelineno-12-15"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span>
+<a href="#__codelineno-12-16" id="__codelineno-12-16" name="__codelineno-12-16"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">get_stack_name</span><span class="p">(</span><span class="s1">'my-stack'</span><span class="p">),</span>
+<a href="#__codelineno-12-17" id="__codelineno-12-17" name="__codelineno-12-17"></a>            <span class="n">stack_group</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<a href="#__codelineno-12-18" id="__codelineno-12-18" name="__codelineno-12-18"></a>            <span class="n">parameters</span><span class="o">=</span><span class="n">MyStackParameters</span><span class="p">(</span>
+<a href="#__codelineno-12-19" id="__codelineno-12-19" name="__codelineno-12-19"></a>                <span class="n">domain</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
+<a href="#__codelineno-12-20" id="__codelineno-12-20" name="__codelineno-12-20"></a>                <span class="n">zone</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">resolve_group</span><span class="p">(</span><span class="n">DNSStackGroup</span><span class="p">)</span><span class="o">.</span><span class="n">zone</span>
+<a href="#__codelineno-12-21" id="__codelineno-12-21" name="__codelineno-12-21"></a>                <span class="n">ipv6</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ipv6</span>
+<a href="#__codelineno-12-22" id="__codelineno-12-22" name="__codelineno-12-22"></a>            <span class="p">)</span>
+<a href="#__codelineno-12-23" id="__codelineno-12-23" name="__codelineno-12-23"></a>        <span class="p">)</span>
 </code></pre></div>
 <p>The function <code>get_stack_name</code> generates the stack name based on following pattern.</p>
 <p><strong>Pattern</strong>: <code>{module_path}-{name}-{region}-{env}</code></p>
@@ -577,35 +627,35 @@
 </ul>
 <h3 id="config-structure">Config Structure<a class="headerlink" href="#config-structure" title="Permanent link"></a></h3>
 <p>Create a <code>config</code> folder in the root of the project and structure it as follows:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>.
-<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>+-- cdk.json
-<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a>+-- app.py
-<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a>+-- config/
-<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a>| +-- &lt;env&gt;/
-<a href="#__codelineno-11-6" id="__codelineno-11-6" name="__codelineno-11-6"></a>|   +-- config.yaml
-<a href="#__codelineno-11-7" id="__codelineno-11-7" name="__codelineno-11-7"></a>|   +-- &lt;region&gt;/
-<a href="#__codelineno-11-8" id="__codelineno-11-8" name="__codelineno-11-8"></a>|     +-- config.yaml
-<a href="#__codelineno-11-9" id="__codelineno-11-9" name="__codelineno-11-9"></a>|     +-- &lt;groupName&gt;/
-<a href="#__codelineno-11-10" id="__codelineno-11-10" name="__codelineno-11-10"></a>|         +-- config.yaml
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>.
+<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a>+-- cdk.json
+<a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a>+-- app.py
+<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a>+-- config/
+<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a>| +-- &lt;env&gt;/
+<a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a>|   +-- config.yaml
+<a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a>|   +-- &lt;region&gt;/
+<a href="#__codelineno-13-8" id="__codelineno-13-8" name="__codelineno-13-8"></a>|     +-- config.yaml
+<a href="#__codelineno-13-9" id="__codelineno-13-9" name="__codelineno-13-9"></a>|     +-- &lt;groupName&gt;/
+<a href="#__codelineno-13-10" id="__codelineno-13-10" name="__codelineno-13-10"></a>|         +-- config.yaml
 </code></pre></div>
 <p>The first two levels are reserved to the environment name and the region name, the next levels needs to match the stack group structure.</p>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>.
-<a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a>+-- cdk.json
-<a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a>+-- app.py
-<a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a>+-- config/
-<a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a>| +-- config.yaml
-<a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a>| +-- dev/
-<a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a>|   +-- config.yaml
-<a href="#__codelineno-12-8" id="__codelineno-12-8" name="__codelineno-12-8"></a>|   +-- us-east-1/
-<a href="#__codelineno-12-9" id="__codelineno-12-9" name="__codelineno-12-9"></a>|     +-- config.yaml
-<a href="#__codelineno-12-10" id="__codelineno-12-10" name="__codelineno-12-10"></a>|     +-- app1/
-<a href="#__codelineno-12-11" id="__codelineno-12-11" name="__codelineno-12-11"></a>|       +-- config.yaml
-<a href="#__codelineno-12-12" id="__codelineno-12-12" name="__codelineno-12-12"></a>+-- stacks/
-<a href="#__codelineno-12-13" id="__codelineno-12-13" name="__codelineno-12-13"></a>| +-- app1/
-<a href="#__codelineno-12-14" id="__codelineno-12-14" name="__codelineno-12-14"></a>|   +-- stacks.py
-<a href="#__codelineno-12-15" id="__codelineno-12-15" name="__codelineno-12-15"></a>+-- templates/
-<a href="#__codelineno-12-16" id="__codelineno-12-16" name="__codelineno-12-16"></a>|   +-- stacks/
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>.
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a>+-- cdk.json
+<a href="#__codelineno-14-3" id="__codelineno-14-3" name="__codelineno-14-3"></a>+-- app.py
+<a href="#__codelineno-14-4" id="__codelineno-14-4" name="__codelineno-14-4"></a>+-- config/
+<a href="#__codelineno-14-5" id="__codelineno-14-5" name="__codelineno-14-5"></a>| +-- config.yaml
+<a href="#__codelineno-14-6" id="__codelineno-14-6" name="__codelineno-14-6"></a>| +-- dev/
+<a href="#__codelineno-14-7" id="__codelineno-14-7" name="__codelineno-14-7"></a>|   +-- config.yaml
+<a href="#__codelineno-14-8" id="__codelineno-14-8" name="__codelineno-14-8"></a>|   +-- us-east-1/
+<a href="#__codelineno-14-9" id="__codelineno-14-9" name="__codelineno-14-9"></a>|     +-- config.yaml
+<a href="#__codelineno-14-10" id="__codelineno-14-10" name="__codelineno-14-10"></a>|     +-- app1/
+<a href="#__codelineno-14-11" id="__codelineno-14-11" name="__codelineno-14-11"></a>|       +-- config.yaml
+<a href="#__codelineno-14-12" id="__codelineno-14-12" name="__codelineno-14-12"></a>+-- stacks/
+<a href="#__codelineno-14-13" id="__codelineno-14-13" name="__codelineno-14-13"></a>| +-- app1/
+<a href="#__codelineno-14-14" id="__codelineno-14-14" name="__codelineno-14-14"></a>|   +-- stacks.py
+<a href="#__codelineno-14-15" id="__codelineno-14-15" name="__codelineno-14-15"></a>+-- templates/
+<a href="#__codelineno-14-16" id="__codelineno-14-16" name="__codelineno-14-16"></a>|   +-- stacks/
 </code></pre></div>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h3>
 <ul>
