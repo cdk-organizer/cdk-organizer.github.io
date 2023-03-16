@@ -250,30 +250,30 @@
 <li><a href="https://nodejs.org/en/download/">node.js 16.x</a></li>
 <li><a href="https://pypi.org/project/poetry/1.2.0/">poetry</a></li>
 </ul>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>pip install <span class="nv">poetry</span><span class="o">==</span><span class="m">1</span>.2.0
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">poetry</span><span class="o">==</span><span class="m">1</span>.2.0
 </code></pre></div>
 <blockquote>
 <p>Installation using <a href="https://pypa.github.io/pipx/installation/">pipx</a> is strongly recommended.</p>
 </blockquote>
 <h2 id="install-dependencies">Install dependencies<a class="headerlink" href="#install-dependencies" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>npm install
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>npm<span class="w"> </span>install
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>poetry install
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>poetry<span class="w"> </span>install
 </code></pre></div>
 <h2 id="terminal-virtual-environment">Terminal virtual environment<a class="headerlink" href="#terminal-virtual-environment" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>poetry shell
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>poetry<span class="w"> </span>shell
 </code></pre></div>
 <h2 id="run-flake8-linting">Run Flake8 Linting<a class="headerlink" href="#run-flake8-linting" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>npx nx affected:lint
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>affected:lint
 </code></pre></div>
 <p>or for a specific project</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>npx nx lint &lt;appName&gt;
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>lint<span class="w"> </span>&lt;appName&gt;
 </code></pre></div>
 <h2 id="add-new-dependency">Add new dependency<a class="headerlink" href="#add-new-dependency" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>npx nx run &lt;appName&gt;:add --name &lt;dependencyName&gt;<span class="o">==</span>&lt;dependencyVersion&gt;
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>run<span class="w"> </span>&lt;appName&gt;:add<span class="w"> </span>--name<span class="w"> </span>&lt;dependencyName&gt;<span class="o">==</span>&lt;dependencyVersion&gt;
 </code></pre></div>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>npx nx run core:add --name <span class="nv">requests</span><span class="o">=</span><span class="m">2</span>.27.1
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>run<span class="w"> </span>core:add<span class="w"> </span>--name<span class="w"> </span><span class="nv">requests</span><span class="o">=</span><span class="m">2</span>.27.1
 </code></pre></div>
 <p>Using the Nx wrapper to adding a dependency ensure that both root <code>poetry.lock</code> and project <code>poetry.lock</code> are updated.</p>
 </article>
